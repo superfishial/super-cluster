@@ -23,4 +23,4 @@ terraform init
 terraform apply
 ```
 
-After creation, you can get the configuration for Talos via `terraform output -raw talosconfig > talosconfig` and the Kubernetes config via `terraform output -raw kubeconfig > kubeconfig`. Place the kubeconfig in `~/.config/kube/config` (by default on Linux) or point the `KUBECONFIG` env to the file.
+After creation, you can get the configuration for Talos via `terraform output -raw talosconfig > talosconfig` and the Kubernetes config via `terraform output -raw kubeconfig > kubeconfig`. Place the kubeconfig in `~/.kube/config` (by default on Linux) or point the `KUBECONFIG` env to the file.
