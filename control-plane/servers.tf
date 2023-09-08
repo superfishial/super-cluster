@@ -17,7 +17,7 @@ resource "hcloud_placement_group" "control_plane" {
 }
 
 resource "hcloud_server" "control_plane" {
-  for_each = toset(["1", "2"])
+  for_each = toset(["1", "2", "3"])
   name     = "control-plane-${each.key}"
   labels = {
     type = "control-plane"
