@@ -40,7 +40,7 @@ locals {
     cluster = {
       extraManifests = [
         "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml",
-        "https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+        "https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml",
       ]
       # Cilium configuration
       # https://www.talos.dev/v1.5/kubernetes-guides/network/deploying-cilium/
@@ -53,14 +53,6 @@ locals {
       proxy = {
         disabled = true
       }
-      # Update cilium with the manifests/generate-cilium.sh script
-      # TODO: Doesn't work because hetzner has a limit of 32768 chars for the cloud init
-      inlineManifests = [
-        {
-          name     = "cilium"
-          contents = file("${path.module}/manifests/cilium.yaml")
-        }
-      ]
     }
   })
 }

@@ -41,7 +41,7 @@ resource "hcloud_server" "control_plane" {
     type = "control-plane"
   }
   image              = data.hcloud_image.talos.id
-  server_type        = "cpx11"
+  server_type        = "cpx21"
   datacenter         = hcloud_primary_ip.control_plane[count.index].datacenter
   placement_group_id = hcloud_placement_group.control_plane.id
   public_net {
