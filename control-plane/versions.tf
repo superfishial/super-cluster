@@ -1,4 +1,10 @@
 terraform {
+  cloud {
+    organization = "superfishial"
+    workspaces {
+      tags = ["abyss", "control-plane"]
+    }
+  }
   required_providers {
     hcloud = {
       source  = "hetznercloud/hcloud"

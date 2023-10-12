@@ -116,3 +116,8 @@ output "kubeconfig" {
   value     = data.talos_cluster_kubeconfig.this.kubeconfig_raw
   sensitive = true
 }
+
+output "talos_worker_machine_configuration" {
+  value     = data.talos_machine_configuration.worker.machine_configuration
+  sensitive = true
+}
