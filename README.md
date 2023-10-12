@@ -1,6 +1,10 @@
 # super-cluster
 
-## Build Talos Image
+## Build base image
+
+We need to extend the Talos base image with open-iscsi which we do via a GitHub action triggered manually. This will no longer be necessary with Longhorn 1.6 https://github.com/longhorn/longhorn/issues/3161
+
+## Generate Hetzner Cloud snapshot for Talos image
 
 Based on the guide from Talos: https://github.com/siderolabs/talos
 

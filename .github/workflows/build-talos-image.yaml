@@ -1,0 +1,32 @@
+name: Build Talos images
+on:
+  workflow_dispatch: {}
+
+env:
+  TALOS_VERSION: v1.5.2
+
+jobs:
+  build-talos-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Build Hetzner Cloud image
+        run: |
+          docker run --rm -t --privileged \
+            -v /dev:/dev -v $PWD/_out:/out \
+            ghcr.io/siderolabs/imager:$TALOS_VERSION \
+            hcloud --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4
+
+      - name: Build metal image
+        run: |
+          docker run --rm -t --privileged \
+            -v /dev:/dev -v $PWD/_out:/out \
+            ghcr.io/siderolabs/imager:$TALOS_VERSION \
+            metal --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: talos-image
+          path: _out/*.raw.xz
