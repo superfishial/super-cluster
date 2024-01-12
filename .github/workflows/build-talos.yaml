@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  TALOS_VERSION: v1.5.2
+  TALOS_VERSION: v1.6.1
 
 jobs:
   build-talos-image:
@@ -16,14 +16,14 @@ jobs:
           docker run --rm -t --privileged \
             -v /dev:/dev -v $PWD/_out:/out \
             ghcr.io/siderolabs/imager:$TALOS_VERSION \
-            hcloud --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4
+            hcloud --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.1
 
       - name: Build metal image
         run: |
           docker run --rm -t --privileged \
             -v /dev:/dev -v $PWD/_out:/out \
             ghcr.io/siderolabs/imager:$TALOS_VERSION \
-            metal --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4
+            metal --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.1
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
