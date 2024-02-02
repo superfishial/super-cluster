@@ -2,17 +2,17 @@ terraform {
   cloud {
     organization = "superfishial"
     workspaces {
-      tags = ["abyss", "control-plane"]
+      tags = ["neptune"]
     }
   }
   required_providers {
     hcloud = {
       source  = "hetznercloud/hcloud"
-      version = "1.42.1"
+      version = "~> 1"
     }
     talos = {
       source  = "siderolabs/talos"
-      version = "0.4.0-alpha.0"
+      version = "~> 0"
     }
   }
 }
