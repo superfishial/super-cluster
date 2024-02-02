@@ -16,14 +16,14 @@ jobs:
           docker run --rm -t --privileged \
             -v /dev:/dev -v $PWD/_out:/out \
             ghcr.io/siderolabs/imager:$TALOS_VERSION \
-            hcloud --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.1
+            hcloud --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.4
 
       - name: Build metal image
         run: |
           docker run --rm -t --privileged \
             -v /dev:/dev -v $PWD/_out:/out \
             ghcr.io/siderolabs/imager:$TALOS_VERSION \
-            metal --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.1
+            metal --system-extension-image=ghcr.io/siderolabs/iscsi-tools:v0.1.4 --system-extension-image=ghcr.io/siderolabs/util-linux-tools:v1.6.4
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
