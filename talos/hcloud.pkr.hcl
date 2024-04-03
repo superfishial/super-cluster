@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     hcloud = {
-      version = ">= 1.0.0"
+      version = "~> 1"
       source  = "github.com/hashicorp/hcloud"
     }
   }
@@ -9,7 +9,7 @@ packer {
 
 variable "talos_version" {
   type    = string
-  default = "v1.5.2"
+  default = "v1.6.1"
 }
 
 locals {
