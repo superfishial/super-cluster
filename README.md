@@ -10,7 +10,7 @@ Based on the guide from Talos: https://github.com/siderolabs/talos
 
 ```bash
 export HCLOUD_TOKEN=TOKEN_WITH_READ_WRITE_PERMISSIONS
-cd talos-snapshot
+cd talos
 packer init .
 packer build .
 ```
@@ -22,7 +22,7 @@ You may need to update the version of Talos in the Terraform
 Create the file `control-plane/secrets.auto.tfvars` and put in `hetzner_token=TOKEN_WITH_READ_WRITE_PERMISSIONS`
 
 ```bash
-cd control-plane
+cd neptune
 terraform init
 terraform apply
 ```
