@@ -127,6 +127,18 @@ resource "kubernetes_storage_class" "longhorn_ssd" {
   }
 }
 
+resource "kubernetes_storage_class" "longhorn_ssd_unsafe" {
+  metadata {
+    name = "ssd-unsafe"
+  }
+  storage_provisioner = "driver.longhorn.io"
+  parameters = {
+    numberOfReplicas    = "1"
+    staleReplicaTimeout = "2880"
+    diskSelector        = "ssd"
+  }
+}
+
 resource "kubernetes_storage_class" "longhorn_hdd" {
   metadata {
     name = "hdd"
