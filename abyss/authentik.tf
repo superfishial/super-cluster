@@ -12,7 +12,8 @@ resource "helm_release" "authentik" {
   version    = "2024.2.2"
 
   set_sensitive {
-
+    name  = "authentik.secret_key"
+    value = random_password.authentik_secret_key.result
   }
 
   values = [<<YAML
@@ -55,13 +56,21 @@ resource "helm_release" "authentik" {
 
     global:
       env:
-        - name: AUTHENTIK_POSTGRESQL__SSLMODE
-          value: require
         - name: AUTHENTIK_SECRET_KEY
           valueFrom:
             secretKeyRef:
               key: secret-key
               name: authentik-config
+        - name: AUTHENTIK_POSTGRESQL__SSLMODE
+          value: require
+        - name: AUTHENTIK_POSTGRESQL__HOST
+          value: authentik-postgres-rw
+        - name: AUTHENTIK_POSTGRESQL__PORT
+          value: "5432"
+        - name: AUTHENTIK_POSTGRESQL__DATABASE
+          value: authentik
+        - name: AUTHENTIK_POSTGRESQL__USERNAME
+          value: authentik
         - name: AUTHENTIK_POSTGRESQL__PASSWORD
           valueFrom:
             secretKeyRef:
