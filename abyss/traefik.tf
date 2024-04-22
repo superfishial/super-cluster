@@ -65,6 +65,12 @@ resource "helm_release" "traefik" {
         port: 80
         redirectTo:
           port: websecure
+      # Radicle Node port
+      radicle:
+        port: 8776
+        expose: true
+        exposedPort: 8776
+        protocol: TCP
   YAML
   ]
 
