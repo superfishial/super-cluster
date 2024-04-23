@@ -22,6 +22,19 @@ resource "helm_release" "cert_manager" {
   depends_on = [helm_release.cilium, kubectl_manifest.coreos_crds]
 }
 
+# Self Signed Issuer
+resource "kubectl_manifest" "self_signed_issuer" {
+  yaml_body  = <<YAML
+    apiVersion: cert-manager.io/v1
+    kind: ClusterIssuer
+    metadata:
+      name: self-signed
+    spec:
+      selfSigned: {}
+  YAML
+  depends_on = [helm_release.cert_manager]
+}
+
 # Cloudflare Issuer
 data "cloudflare_api_token_permission_groups" "cert_manager" {}
 resource "cloudflare_api_token" "dns_token" {
