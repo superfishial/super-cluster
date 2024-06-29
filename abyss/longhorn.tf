@@ -17,13 +17,17 @@ resource "helm_release" "longhorn" {
   namespace  = kubernetes_namespace.longhorn.metadata[0].name
   repository = "https://charts.longhorn.io"
   chart      = "longhorn"
-  version    = "1.6.0"
+  version    = "1.6.2"
 
   values = [<<YAML
     defaultSettings:
       defaultDataLocality: best-effort
       replicaAutoBalance: best-effort
       createDefaultDiskLabeledNodes: false
+
+      # Allow draining the node if the node has a single replica volume
+      # and the workload that uses it is stopped
+      nodeDrainPolicy: allow-if-replica-is-stopped
 
       backupTarget: s3://${b2_bucket.backup_target.bucket_name}@us-east-1/
       backupTargetCredentialSecret: ${kubernetes_secret.longhorn_backup_auth.metadata[0].name}
