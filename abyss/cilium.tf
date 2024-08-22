@@ -1,6 +1,6 @@
 resource "helm_release" "cilium" {
   name      = "cilium"
-  version   = "1.15.0"
+  version   = "1.15.6"
   namespace = "kube-system"
 
   repository = "https://helm.cilium.io/"

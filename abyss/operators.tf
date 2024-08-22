@@ -4,5 +4,5 @@ resource "helm_release" "postgres_operator" {
   create_namespace = true
   repository       = "https://cloudnative-pg.github.io/charts"
   chart            = "cloudnative-pg"
-  version          = "0.20.0"
+  version          = "0.21.5"
 }

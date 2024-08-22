@@ -3,7 +3,7 @@ resource "helm_release" "sealed_secrets" {
   namespace  = "kube-system"
   repository = "https://bitnami-labs.github.io/sealed-secrets"
   chart      = "sealed-secrets"
-  version    = "2.14.2"
+  version    = "2.16.0"
 
   values = [<<YAML
     # CLI expects the controller to have this name

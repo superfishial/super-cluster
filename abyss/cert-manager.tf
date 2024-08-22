@@ -3,7 +3,7 @@ resource "helm_release" "cert_manager" {
   namespace  = "kube-system"
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "v1.13.3"
+  version    = "v1.15.1"
 
   values = [<<YAML
     replicaCount: 1
