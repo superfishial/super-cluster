@@ -9,7 +9,7 @@ resource "helm_release" "authentik" {
   namespace  = kubernetes_namespace.authentik.metadata[0].name
   repository = "https://charts.goauthentik.io"
   chart      = "authentik"
-  version    = "2024.8.5"
+  version    = "2024.12.2"
 
   set_sensitive {
     name  = "authentik.secret_key"
